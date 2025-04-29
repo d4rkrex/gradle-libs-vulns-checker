@@ -1,24 +1,23 @@
-# 🛡️ Super Vuln Checker
+# 🛡️ Gradle Libs Vuln Checker
 
 This tool checks Java/Kotlin dependencies for known vulnerabilities using [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/).  
-It is designed to be used easily with Docker and **analyzes one dependency at a time**.
-
+It is designed to be used easily with Docker
 ---
 
-## 🚀 How to Use
+## How to Use
 
-### 1. Run via Docker 
+### 1. Run via Docker (one dependency per run)
 
-Mount your current folder into `/app` and pass the dependency as argument:
+Mount your current folder to `/output` (for exporting reports), and pass the dependency as a string:
 
 ```bash
-docker run --rm -v $(pwd):/app super-vuln-checker "group:artifact:version"
+docker run --rm d4rkrex/gradle-libs-vulns-checker "group:artifact:version"
 ```
 
-✅ Example:
+ Example:
 
 ```bash
-docker run --rm -v $(pwd):/app super-vuln-checker "org.json:json:20230618"
+docker run --rm -v $(pwd):/output d4rkrex/gradle-libs-vulns-checker "org.json:json:20230618"
 ```
 
 ---
@@ -28,25 +27,26 @@ docker run --rm -v $(pwd):/app super-vuln-checker "org.json:json:20230618"
 - Resolves the given dependency and its transitive dependencies using Gradle.
 - Scans for known CVEs using OWASP Dependency-Check.
 - Prints results and lists detected vulnerabilities, if any.
-- Outputs a `resolved-libs.txt` and a vulnerability report (JSON & HTML).
-
 ---
 
 ## ℹ️ Notes
 
+- Multiple dependency scanning via `.txt` is not supported.
 - OSV-Scanner support is disabled by default.
+- Results and reports are generated in a temporary folder inside the container (shown on screen).
+- Mounting to `/output` is optional if you only want terminal output.
 
 ---
 
-## Building the Docker Image (if needed)
+## Build Locally (if needed)
 
 ```bash
-docker build -t super-vuln-checker .
+docker build -t gradle-libs-vulns-checker .
 ```
 
 ---
 
-## Example Output
+##  Example Output
 
 ```
 📚 Resolved libraries:
