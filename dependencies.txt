@@ -1,0 +1,10 @@
+com.jayway.jsonpath:json-path:2.9.0
+io.rest-assured:json-path:5.3.0
+com.amazonaws:jmespath-java:1.12.0
+io.burt:jmespath-jackson:0.5.0
+io.gatling:jsonpath:0.6.14
+com.fasterxml.jackson.core:jackson-databind:2.15.2
+com.google.code.gson:gson:2.10.1
+org.json:json:20230618
+org.eclipse:yasson:3.0.3
+com.alibaba:fastjson:2.0.42
